@@ -15,8 +15,8 @@ db = "CREATE DATABASE IF NOT EXISTS UNL"
 cursor.execute(db)
 
 #Drop the table when needed
-#sql = "DROP TABLE UNL.students"
-#cursor.execute(sql)
+# sql = "DROP TABLE UNL.userAccount"
+# cursor.execute(sql)
 
 #create table
 
@@ -27,7 +27,13 @@ table = "CREATE TABLE IF NOT EXISTS UNL.students (nuid INT PRIMARY KEY," \
         " level VARCHAR(255)," \
         " department VARCHAR(255))"
 
+studentAccountTable = "CREATE TABLE IF NOT EXISTS UNL.studentAccount (nuid INT PRIMARY KEY," \
+                   " username VARCHAR(255)," \
+                   " password VARCHAR(255))"
+
+
 cursor.execute(table)
+cursor.execute(studentAccountTable)
 
 cursor.close()
 con.commit()
