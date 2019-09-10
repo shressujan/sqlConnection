@@ -1,14 +1,9 @@
+from database_connection import DatabaseConnection
 
-import mysql.connector
-
-con = mysql.connector.connect(
-    host='127.0.0.1',
-    user='root',
-    password=''
-)
+db_connection = DatabaseConnection.initiate_database_connection()
 
 #cursor
-cursor = con.cursor()
+cursor = db_connection.cursor()
 
 #create a database
 db = "CREATE DATABASE IF NOT EXISTS UNL"
@@ -21,7 +16,7 @@ cursor.execute(db)
 #create table
 
 
-table = "CREATE TABLE IF NOT EXISTS UNL.students (nuid INT PRIMARY KEY," \
+studentInformationtable = "CREATE TABLE IF NOT EXISTS UNL.students (nuid INT PRIMARY KEY," \
         " firstName VARCHAR(255)," \
         " lastName VARCHAR(255)," \
         " level VARCHAR(255)," \
@@ -32,9 +27,8 @@ studentAccountTable = "CREATE TABLE IF NOT EXISTS UNL.studentAccount (nuid INT P
                    " password VARCHAR(255))"
 
 
-cursor.execute(table)
+cursor.execute(studentInformationtable)
 cursor.execute(studentAccountTable)
 
 cursor.close()
-con.commit()
-con.close()
+DatabaseConnection.exit_database_connection(db_connection)
